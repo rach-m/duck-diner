@@ -43,40 +43,44 @@ const main = async () => {
         { name: "rice", popularity: 2, dishes: [] },
     ];
 
-    await Allergen.insertMany(allergen);
+    try {
+        await Allergen.insertMany(allergen);
 
-    await Promise.all(
-        dishes.map(async (dish) => {
-            let { name, price, description, vegetarian, allergens } = dish;
-            let newDish = new Dish({
-                name,
-                price,
-                description,
-                vegetarian,
-                allergens: [],
-            });
+        await Promise.all(
+            dishes.map(async (dish) => {
+                let { name, price, description, vegetarian, allergens } = dish;
+                let newDish = new Dish({
+                    name,
+                    price,
+                    description,
+                    vegetarian,
+                    allergens: [],
+                });
 
-            await Promise.all(
-                allergens.map(async (allergen) => {
-                    let foundAllergen = await Allergen.findOne({
-                        name: allergen,
-                    });
-                    newDish.allergens.push(foundAllergen._id);
-                    return foundAllergen;
-                })
-            );
+                await Promise.all(
+                    allergens.map(async (allergen) => {
+                        let foundAllergen = await Allergen.findOne({
+                            name: allergen,
+                        });
+                        newDish.allergens.push(foundAllergen._id);
+                        return foundAllergen;
+                    })
+                );
 
-            let createdDish = await newDish.save();
+                let createdDish = await newDish.save();
 
-            await Promise.all(
-                createdDish.allergens.map(async (allergen) => {
-                    let foundAllergen = await Allergen.findById(allergen);
-                    foundAllergen.dishes.push(createdDish);
-                    await foundAllergen.save();
-                })
-            );
-        })
-    );
+                await Promise.all(
+                    createdDish.allergens.map(async (allergen) => {
+                        let foundAllergen = await Allergen.findById(allergen);
+                        foundAllergen.dishes.push(createdDish);
+                        await foundAllergen.save();
+                    })
+                );
+            })
+        );
+    } catch (error) {
+        console.error(error)
+    }
 };
 
 const run = async () => {
