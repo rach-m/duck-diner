@@ -1,0 +1,19 @@
+.dishcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.dishcontainer h4 {
+  font-size: 45px;
+}
+
+.dishcontainer h6 {
+  font-size: 30px;
+}
+
+.dishcontainer p {
+  font-size: 25px;
+}

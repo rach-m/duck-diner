@@ -1,37 +1,57 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: navy;
+  height: 150px;
+  max-width: 100vw;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Neonderthaw', cursive;
+  font-size: 50px;
+}
+
+.nav a:visited {
+  color: white;
+  text-decoration: none;
+
+}
+
+.nav a:hover {
+  color: yellow
+}
+
 .App {
+  height: 100vh;
+  max-width: 100vw;
+  background-color: teal;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.home h1 {
+  font-size: 80px;
+  margin: 15px;
+  padding: 30px;
 }
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.home h4 {
+  font-size: 25px;
+  margin-top: 0;
+  font-style: italic;
 }
 
-.App-link {
-    color: #61dafb;
+a:visited {
+  color: black;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+a {
+  text-decoration: none;
 }
